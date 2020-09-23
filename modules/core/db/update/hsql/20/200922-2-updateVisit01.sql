@@ -1,0 +1,1 @@
+alter table CLINIC_VISIT add constraint FK_CLINIC_VISIT_ON_VETERINARIAN foreign key (VETERINARIAN_ID) references CLINIC_VETERINARIAN(ID);

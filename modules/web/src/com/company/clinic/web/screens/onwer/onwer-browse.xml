@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        xmlns:c="http://schemas.haulmont.com/cuba/screen/jpql_condition.xsd"
+        caption="msg://onwerBrowse.caption"
+        focusComponent="onwersTable"
+        messagesPack="com.company.clinic.web.screens.onwer">
+    <data readOnly="true">
+        <collection id="onwersDc"
+                    class="com.company.clinic.entity.Onwer">
+            <view extends="_local">
+                <property name="pets" view="_minimal"/>
+                <property name="adress" view="_minimal">
+                    <property name="city"/>
+                    <property name="street"/>
+                    <property name="number"/>
+                </property>
+            </view>
+            <loader id="onwersDl">
+                <query>
+                    <![CDATA[select e from clinic_Onwer e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="onwersTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="onwersTable"
+                dataLoader="onwersDl">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="onwersTable"
+                    width="100%"
+                    dataContainer="onwersDc">
+            <actions>
+                <action id="create" type="create"/>
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+            </actions>
+            <columns>
+                <column id="name"/>
+                <column id="email"/>
+                <column id="adress.city"/>
+                <column id="adress.street"/>
+                <column id="adress.number"/>
+            </columns>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn" action="onwersTable.create"/>
+                <button id="editBtn" action="onwersTable.edit"/>
+                <button id="removeBtn" action="onwersTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>

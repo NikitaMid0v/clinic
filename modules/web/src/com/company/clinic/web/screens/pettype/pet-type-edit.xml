@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://petTypeEdit.caption"
+        focusComponent="form"
+        messagesPack="com.company.clinic.web.screens.pettype">
+    <data>
+        <instance id="petTypeDc"
+                  class="com.company.clinic.entity.PetType"
+                  view="_local">
+            <loader/>
+        </instance>
+        <collection id="petsDc" class="com.company.clinic.entity.Pet">
+            <view extends="_local">
+                <property name="onwer" view="_minimal"/>
+            </view>
+            <loader id="petsDl">
+                <query>
+                    <![CDATA[select e from clinic_Pet e where e.petType = :container_petTypeDc]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+    </facets>
+    <layout expand="petsTable" spacing="true">
+        <form id="form" dataContainer="petTypeDc">
+            <column width="350px">
+                <textField id="nameField" property="name"/>
+            </column>
+        </form>
+        <hbox id="editActions" spacing="true" height="10%">
+            <button action="windowCommitAndClose"/>
+            <button action="windowClose"/>
+        </hbox>
+        <label id="label" value="msg://pets"/>
+        <table id="petsTable" height="100" dataContainer="petsDc" width="100%">
+            <columns>
+                <column id="name"/>
+                <column id="onwer"/>
+            </columns>
+        </table>
+    </layout>
+</window>

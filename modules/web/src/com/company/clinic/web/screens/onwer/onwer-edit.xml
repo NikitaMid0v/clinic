@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://onwerEdit.caption"
+        focusComponent="form"
+        messagesPack="com.company.clinic.web.screens.onwer">
+    <data>
+        <instance id="onwerDc"
+                  class="com.company.clinic.entity.Onwer">
+            <view extends="_local">
+                <property name="pets" view="_minimal">
+                    <property name="petType" view="_minimal"/>
+                </property>
+                <property name="adress" view="_minimal">
+                    <property name="city"/>
+                    <property name="street"/>
+                    <property name="number"/>
+                </property>
+            </view>
+            <loader/>
+            <collection id="petsDc" property="pets"/>
+        </instance>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="editActions" spacing="true">
+        <form id="form" dataContainer="onwerDc">
+            <column width="350px">
+                <textField id="nameField" property="name"/>
+                <textField id="emailField" property="email"/>
+                <textField id="adressCityField" property="adress.city"/>
+                <textField id="adressStreetField" property="adress.street"/>
+                <textField id="adressNumberField" property="adress.number"/>
+            </column>
+        </form>
+        <groupBox id="petsBox" caption="msg://com.company.clinic.entity/Onwer.pets">
+            <table id="petsTable" dataContainer="petsDc" width="100%" height="200px">
+                <actions>
+                    <action id="create" type="create"/>
+                    <action id="edit" type="edit"/>
+                    <action id="remove" type="remove"/>
+                </actions>
+                <columns>
+                    <column id="name"/>
+                    <column id="petType"/>
+                </columns>
+                <buttonsPanel>
+                    <button action="petsTable.create"/>
+                    <button action="petsTable.edit"/>
+                    <button action="petsTable.remove"/>
+                </buttonsPanel>
+            </table>
+        </groupBox>
+        <hbox id="editActions" spacing="true">
+            <button action="windowCommitAndClose"/>
+            <button action="windowClose"/>
+        </hbox>
+    </layout>
+</window>

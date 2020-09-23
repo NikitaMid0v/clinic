@@ -1,0 +1,2 @@
+alter table CLINIC_VIZIT_CONSUMABLE_LINK add constraint FK_VIZCON_ON_VISIT foreign key (VIZIT_ID) references CLINIC_VISIT(ID);
+alter table CLINIC_VIZIT_CONSUMABLE_LINK add constraint FK_VIZCON_ON_CONSUMABLE foreign key (CONSUMABLE_ID) references CLINIC_CONSUMABLE(ID);

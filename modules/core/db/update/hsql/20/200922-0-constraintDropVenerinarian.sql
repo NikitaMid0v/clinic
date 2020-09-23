@@ -1,0 +1,1 @@
+alter table CLINIC_VISIT drop constraint FK_CLINIC_VISIT_ON_VETERINARIAN ;

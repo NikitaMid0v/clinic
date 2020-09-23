@@ -1,0 +1,1 @@
+create unique index IDX_CLINIC_ONWER_UNIQ_EMAIL on CLINIC_ONWER (EMAIL);
